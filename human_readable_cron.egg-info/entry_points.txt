@@ -1,0 +1,2 @@
+[console_scripts]
+human-readable-cron = human_readable_cron.cli:main

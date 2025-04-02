@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: human-readable-cron
+Version: 0.0.0
+Summary: convert text scheduling to cron format
+Home-page: https://github.com/sumanengg/human-readable-cron
+Author: Sumanta Ghosh
+Author-email: sumanengg.sg@gmail.com
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Dynamic: author-email
+Dynamic: home-page
+
+# human-readble-cron
