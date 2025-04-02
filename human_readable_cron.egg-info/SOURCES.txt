@@ -13,9 +13,11 @@ human_readable_cron/__pycache__/__init__.cpython-310.pyc
 human_readable_cron/__pycache__/cli.cpython-310.pyc
 human_readable_cron/__pycache__/converter.cpython-310.pyc
 venv/pyvenv.cfg
+venv/Lib/site-packages/__editable__.human_readable_cron-0.0.0.pth
+venv/Lib/site-packages/__editable___human_readable_cron_0_0_0_finder.py
 venv/Lib/site-packages/distutils-precedence.pth
-venv/Lib/site-packages/human_readable_cron.pth
 venv/Lib/site-packages/typing_extensions.py
+venv/Lib/site-packages/__pycache__/__editable___human_readable_cron_0_0_0_finder.cpython-310.pyc
 venv/Lib/site-packages/__pycache__/typing_extensions.cpython-310.pyc
 venv/Lib/site-packages/_distutils_hack/__init__.py
 venv/Lib/site-packages/_distutils_hack/override.py
@@ -880,6 +882,14 @@ venv/Lib/site-packages/httpx/_transports/__pycache__/base.cpython-310.pyc
 venv/Lib/site-packages/httpx/_transports/__pycache__/default.cpython-310.pyc
 venv/Lib/site-packages/httpx/_transports/__pycache__/mock.cpython-310.pyc
 venv/Lib/site-packages/httpx/_transports/__pycache__/wsgi.cpython-310.pyc
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/INSTALLER
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/METADATA
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/RECORD
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/REQUESTED
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/WHEEL
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/direct_url.json
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/entry_points.txt
+venv/Lib/site-packages/human_readable_cron-0.0.0.dist-info/top_level.txt
 venv/Lib/site-packages/idna/__init__.py
 venv/Lib/site-packages/idna/codec.py
 venv/Lib/site-packages/idna/compat.py
