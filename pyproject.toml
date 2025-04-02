@@ -1,0 +1,22 @@
+[project]
+name = "human-readable-cron"
+description = "convert text scheduling to cron format"
+authors = [
+    {name = "Sumanta Ghosh"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.scripts]
+human-readable-cron = "human_readable_cron.cli:main"
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "dirty-tag"
