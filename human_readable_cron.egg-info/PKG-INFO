@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: human-readable-cron
-Version: 0.0.0
+Version: 0.1.1
 Summary: convert text scheduling to cron format
 Home-page: https://github.com/sumanengg/human-readable-cron
 Author: Sumanta Ghosh

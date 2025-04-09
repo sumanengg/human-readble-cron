@@ -1,6 +1,6 @@
 [project]
 name = "human-readable-cron"
-version = "0.0.0" #placeholder version
+version = "0.1.1" #placeholder version
 description = "convert text scheduling to cron format"
 authors = [
     {name = "Sumanta Ghosh"}
@@ -16,7 +16,7 @@ requires = ["setuptools>=42", "setuptools_scm[toml]>=6.0"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-human-readable-cron = "human_readable_cron.cli:main"
+human-readable-cron = "human_readable_cron.src.cli:main"
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
