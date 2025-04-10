@@ -127,15 +127,21 @@ class TestConverter(unittest.TestCase):
             CronConverter("every February at 9 AM").cron_expression, "0 9 * 2 *"
         )
 
-    def test_edge_cases(self):
-        """Test edge cases and unusual inputs."""
-        self.assertEqual(CronConverter("").cron_expression, "0 0 * * *")  # Empty string
+    def test_is_valid(self):
+        """Test the is_valid method with various inputs."""
+        # Valid cases
+        self.assertTrue(CronConverter("Every minute").is_valid())
+        self.assertTrue(CronConverter("Every Monday at 10 AM").is_valid())
+        self.assertTrue(
+            CronConverter("Every 5 minutes between 9 AM and 5 PM").is_valid()
+        )
+
+        # Invalid cases
+        with self.assertRaises(ValueError) as context:
+            CronConverter("Every").is_valid()
         self.assertEqual(
-            CronConverter("random text").cron_expression, "0 0 * * *"
-        )  # Unrecognized text
-        self.assertEqual(
-            CronConverter("on the 15th").cron_expression, "0 0 15 * *"
-        )  # No time specified
+            str(context.exception), "Invalid human-readable cron expression: Every"
+        )
 
 
 if __name__ == "__main__":

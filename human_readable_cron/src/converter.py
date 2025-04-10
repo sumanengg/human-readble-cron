@@ -26,7 +26,12 @@ class CronConverter:
             human_readable_cron (str): The human-readable cron expression.
         """
         self.human_readable_cron = human_readable_cron
-        self.cron_expression = self.convert_to_cron(human_readable_cron)
+        if is_valid := self.is_valid():
+            self.cron_expression = self.convert_to_cron(human_readable_cron)
+        else:
+            raise ValueError(
+                f"Invalid human-readable cron expression: {human_readable_cron}"
+            )
 
     DAYS_OF_WEEK: Dict[str, int] = {
         "monday": 1,
@@ -184,8 +189,66 @@ class CronConverter:
         if re.search(r"daily|every\s+day", text):
             return f"{minute} {hour} * * *"
 
+        # Handle ranges (e.g., "Every Monday to Friday at 10 AM")
+        range_match = re.search(
+            r"every\s+(\w+)\s+to\s+(\w+)\s+at\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)?", text
+        )
+        if range_match:
+            start_day, end_day, hour, minute, meridiem = range_match.groups()
+            hour = int(hour)
+            minute = int(minute) if minute else 0
+
+            # Convert AM/PM to 24-hour format
+            if meridiem == "pm" and hour < 12:
+                hour += 12
+            elif meridiem == "am" and hour == 12:
+                hour = 0
+
+            start_day_value = self.DAYS_OF_WEEK.get(start_day)
+            end_day_value = self.DAYS_OF_WEEK.get(end_day)
+            if start_day_value is not None and end_day_value is not None:
+                return f"{minute} {hour} * * {start_day_value}-{end_day_value}"
+
+        # Handle step values (e.g., "Every 5 minutes between 9 AM and 5 PM")
+        step_match = re.search(
+            r"every\s+(\d+)\s+minutes\s+between\s+(\d{1,2})(am|pm)?\s+and\s+(\d{1,2})(am|pm)?",
+            text,
+        )
+        if step_match:
+            (
+                step,
+                start_hour,
+                start_meridiem,
+                end_hour,
+                end_meridiem,
+            ) = step_match.groups()
+            step = int(step)
+            start_hour = int(start_hour)
+            end_hour = int(end_hour)
+
+            # Convert AM/PM to 24-hour format
+            if start_meridiem == "pm" and start_hour < 12:
+                start_hour += 12
+            elif start_meridiem == "am" and start_hour == 12:
+                start_hour = 0
+
+            if end_meridiem == "pm" and end_hour < 12:
+                end_hour += 12
+            elif end_meridiem == "am" and end_hour == 12:
+                end_hour = 0
+
+            return f"*/{step} {start_hour}-{end_hour} * * *"
+
+        # Handle multiple time intervals (e.g., "Every 15 minutes and every hour")
+        multiple_intervals_match = re.search(
+            r"every\s+(\d+)\s+minutes\s+and\s+every\s+hour", text
+        )
+        if multiple_intervals_match:
+            interval = multiple_intervals_match.group(1)
+            return f"*/{interval} * * * *\n0 * * * *"
+
         # Default case
-        return f"{minute} {hour} * * *"
+        return super().convert_to_cron(human_readable_cron)
 
     def _extract_time(self, text: str) -> Tuple[str, str]:
         """
